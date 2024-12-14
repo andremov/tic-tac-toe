@@ -27,7 +27,7 @@ function isWinner(board: string[], symbol: string): boolean {
   );
 }
 
-function isTie(board: string[]): boolean {
+function fullBoard(board: string[]): boolean {
   return board.every((slot) => slot !== "-");
 }
 
@@ -40,7 +40,7 @@ function doTurn(game: string[], turn: string) {
 
   const cpuWon = isWinner(game, cpuSymbol);
   const playerWon = isWinner(game, playerSymbol);
-  const tied = isTie(game);
+  const tied = fullBoard(game) && !cpuWon && !playerWon;
   const gameComplete = cpuWon || playerWon || tied;
 
   const wisdomEntry: GameStateType = {

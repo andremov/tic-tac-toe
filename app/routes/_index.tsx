@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import GameField from "~/_components/game-field";
 import GameHistory from "~/_components/game-history";
 import { isTie, isWinner } from "~/utils/functions";
+import { call } from "~/utils/gen-wisdom";
 import { getBestMove } from "~/utils/use-wisdom";
 
 export const meta: MetaFunction = () => {
@@ -53,6 +54,13 @@ export default function Index() {
     setHistory([]);
     setWinner("");
   }
+
+  useEffect(() => {
+    const generateWisdom = false;
+    if (generateWisdom) {
+      call();
+    }
+  }, []);
 
   useEffect(() => {
     if (winner !== "") {
