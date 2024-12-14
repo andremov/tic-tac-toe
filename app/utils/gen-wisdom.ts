@@ -46,7 +46,8 @@ function doTurn(game: string[], turn: string) {
   const wisdomEntry: GameStateType = {
     value: gameString,
     moves: [],
-    best: -1,
+    bestCpu: -1,
+    bestPlayer: -1,
     complete: gameComplete,
     tied: tied,
     cpuWon: cpuWon,
@@ -85,21 +86,60 @@ function doTurn(game: string[], turn: string) {
 
   wisdomEntry.moves = moves.map((move) => move.value);
 
-  let bestMove = 0;
-  let bestPercent =
-    (moves[0].leaves.cpu + moves[0].leaves.tie) / moves[0].leaves.total;
+  let bestCpuMove = 0;
+  let bestCpuPercent = 0;
 
-  for (let idx = 1; idx < moves.length; idx++) {
+  for (let idx = 0; idx < moves.length; idx++) {
     const move = moves[idx];
-    const thisPercent = (move.leaves.cpu + move.leaves.tie) / move.leaves.total;
 
-    if (thisPercent > bestPercent) {
-      bestMove = idx;
-      bestPercent = thisPercent;
+    if (move.bestCpu === -1 && (move.cpuWon || move.tied)) {
+      bestCpuMove = idx;
+      break;
+    }
+
+    if (move.bestCpu === -1 && move.playerWon) {
+      continue;
+    }
+
+    const nextPlayerMove = wisdom[move.moves[move.bestPlayer]];
+
+    const thisPercent =
+      (nextPlayerMove.leaves.cpu + nextPlayerMove.leaves.tie) /
+      nextPlayerMove.leaves.total;
+
+    if (thisPercent > bestCpuPercent) {
+      bestCpuMove = idx;
+      bestCpuPercent = thisPercent;
     }
   }
 
-  wisdomEntry.best = bestMove;
+  let bestPlayerMove = 0;
+  let bestPlayerPercent = 0;
+
+  for (let idx = 0; idx < moves.length; idx++) {
+    const move = moves[idx];
+
+    if (move.bestPlayer === -1 && move.playerWon) {
+      bestPlayerMove = idx;
+      break;
+    }
+
+    if (move.bestPlayer === -1 && (move.cpuWon || move.tied)) {
+      continue;
+    }
+
+    const nextCpuMove = wisdom[move.moves[move.bestCpu]];
+
+    const thisPercent = nextCpuMove.leaves.player / nextCpuMove.leaves.total;
+
+    if (thisPercent > bestPlayerPercent) {
+      bestPlayerMove = idx;
+      bestPlayerPercent = thisPercent;
+    }
+  }
+
+  wisdomEntry.bestCpu = bestCpuMove;
+  wisdomEntry.bestPlayer = bestPlayerMove;
   wisdomEntry.leaves = moves.reduce(
     (acc, curr) => ({
       cpu: acc.cpu + curr.leaves.cpu,

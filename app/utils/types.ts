@@ -6,7 +6,8 @@ export type GameState = {
 export type GameStateType = {
   value: string;
   moves: string[];
-  best: number;
+  bestCpu: number;
+  bestPlayer: number;
   complete: boolean;
   tied: boolean;
   playerWon: boolean;
