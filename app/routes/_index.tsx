@@ -142,7 +142,7 @@ export default function Index() {
       </div>
 
       <a href="https://andremov.dev" target="_blank" rel="noopener noreferrer" className="text-warm-gray hover:text-terracotta transition-colors duration-200">
-        👤✏️ Andrés Movilla
+        Built by Andrés Movilla
       </a>
     </div>
   );
