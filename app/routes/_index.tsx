@@ -87,8 +87,8 @@ export default function Index() {
   }, [turn]);
 
   return (
-    <div className="flex flex-col h-screen items-center justify-between py-10">
-      <h1 className="text-4xl font-bold select-none">Tic Tac Toe</h1>
+    <div className="flex flex-col h-screen items-center justify-between py-10 bg-cream">
+      <h1 className="text-4xl font-bold select-none font-serif text-walnut">Tic Tac Toe</h1>
 
       <div className="flex flex-col items-center gap-4">
         <div className="flex">
@@ -106,8 +106,8 @@ export default function Index() {
               className={clsx([
                 "w-32 text-center py-2 border border-transparent rounded-md select-none",
                 {
-                  "bg-blue-900/20 text-blue-400": turn % 2 === 0,
-                  "bg-red-900/20 text-red-400": turn % 2 === 1,
+                  "bg-blue-100 text-blue-600": turn % 2 === 0,
+                  "bg-red-100 text-red-600": turn % 2 === 1,
                 },
               ])}
             >
@@ -118,9 +118,9 @@ export default function Index() {
               className={clsx([
                 "w-32 text-center py-2 border border-transparent rounded-md select-none",
                 {
-                  "bg-blue-900/20 text-blue-400": winner === "X",
-                  "bg-red-900/20 text-red-400": winner === "O",
-                  "bg-gray-900/20 text-gray-400": winner === "T",
+                  "bg-blue-100 text-blue-600": winner === "X",
+                  "bg-red-100 text-red-600": winner === "O",
+                  "bg-sand/50 text-warm-gray": winner === "T",
                 },
               ])}
             >
@@ -133,7 +133,7 @@ export default function Index() {
           )}
           <DotIcon />
           <button
-            className="border border-white/20 hover:border-white/60 bg-white/0 hover:bg-white/10 transition py-2 px-8 rounded-md"
+            className="border border-sand hover:border-terracotta bg-cream hover:bg-terracotta/10 transition py-2 px-8 rounded-md text-walnut"
             onClick={restartGame}
           >
             Restart

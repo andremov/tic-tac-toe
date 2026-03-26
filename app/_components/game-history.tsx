@@ -26,7 +26,7 @@ function GameHistoryEntry(props: GameHistoryEntryPropsType) {
   const { entry, idx } = props;
 
   return (
-    <div className="border border-white/30 w-24 rounded-md flex justify-center py-2 gap-4 items-center">
+    <div className="border border-sand w-24 rounded-md flex justify-center py-2 gap-4 items-center">
       <span className="text-lg">{idx + 1}.</span>
       <div className="grid grid-cols-3 gap-0.5 w-fit">
         {entry.split("").map((char, idx) => (
@@ -44,6 +44,6 @@ function GameHistoryPiece({ char }: { char: string }) {
     case "O":
       return <SquareIcon className="w-2 h-2 text-red-500 fill-red-500" />;
     default:
-      return <SquareIcon className="w-2 h-2 text-gray-500" />;
+      return <SquareIcon className="w-2 h-2 text-sand" />;
   }
 }

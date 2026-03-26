@@ -15,7 +15,7 @@ export default function GameField(props: GameFieldPropsType) {
       {gameState.split("").map((char, idx) => (
         <button
           className={clsx([
-            "rounded-md w-20 transition h-20 bg-gray-900 p-4 flex items-center justify-center hover:bg-gray-800 disabled:hover:bg-transparent disabled:bg-transparent disabled:border border-white/10",
+            "rounded-md w-20 transition h-20 bg-sand/40 p-4 flex items-center justify-center hover:bg-sand/70 disabled:hover:bg-transparent disabled:bg-transparent disabled:border border-sand",
           ])}
           key={idx}
           disabled={char !== "-" || !canPlay}
