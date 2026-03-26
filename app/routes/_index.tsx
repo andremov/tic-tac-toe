@@ -141,9 +141,9 @@ export default function Index() {
         </div>
       </div>
 
-      <span className="opacity-70 hover:opacity-100 transition">
+      <a href="https://andremov.dev" target="_blank" rel="noopener noreferrer" className="text-warm-gray hover:text-terracotta transition-colors duration-200">
         👤✏️ Andrés Movilla
-      </span>
+      </a>
     </div>
   );
 }
