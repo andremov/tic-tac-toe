@@ -88,7 +88,10 @@ export default function Index() {
 
   return (
     <div className="flex flex-col h-screen items-center justify-between py-10 bg-cream">
-      <h1 className="text-4xl font-bold select-none font-serif text-walnut">Tic Tac Toe</h1>
+      <div className="flex items-center gap-3">
+        <img src="/favicon.svg" alt="" className="h-8 w-8 -rotate-12" />
+        <h1 className="text-4xl font-bold select-none font-serif text-walnut">Tic Tac Toe</h1>
+      </div>
 
       <div className="flex flex-col items-center gap-4">
         <div className="flex">
